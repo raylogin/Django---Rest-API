@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Editor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div>
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark">
+            <a class="navbar-brand float-right" href="#">
+                {% if filename %}
+                    {{filename}}
+                {% else %}
+                    Untitled
+                {% endif %}
+        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:8000/odoc/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  href="#">Editor</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Portfolio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+      <form action="" method="post">      
+        {% csrf_token %}
+        <textarea name="File" rows = 22 style="border: 0 none white;
+        width: 100%;
+        height: 90%;
+        overflow: hidden;
+        padding: 0;
+        outline: none;
+        background-color: #D0D0D0;">{{file}}</textarea>
+        <textarea name="Filename" cols="30" rows="1" required placeholder="Untitled"
+        oninvalid="this.setCustomValidity('Enter the filename')"
+        oninput="this.setCustomValidity('')">{{filename}}</textarea>
+        <button class="btn btn-dark float-right" type="submit" style="float: right; margin: 2px;">Save</button>
+      </form>
+    </div>
+  </body>
+</html>
